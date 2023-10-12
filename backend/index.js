@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const adimnroutes = require("./routes/admin");
+const userroutes = require("./routes/users");
 const { default: mongoose } = require("mongoose");
 
 app.use(express.json());
 app.use('/admin', adimnroutes);
+app.use('/users', userroutes);
 
 
 mongoose
