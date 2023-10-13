@@ -4,32 +4,7 @@ const { z } = require("zod");
 const { ADMIN } = require("../database/db");
 const { hashPassword, comparePasswords } = require("../authenticate/auth");
 
-
-const LoginSchema = z.object({
-  // In this example we will only validate the request body.
-  body: z.object({
-    // email should be valid and non-empty
-    username: z.string().min(5),
-    // password should be atleast 6 characters
-    password: z.string().min(6),
-  }),
-});
-
-const validate = (schema) => (req, res, next) => {
-  try {
-    schema.parse({
-      body: req.body,
-    });
-
-    next();
-  } catch (err) {
-    return res.status(400).send(err.errors);
-  }
-};
-
-
-
-router.post("/signup",validate(LoginSchema), async (req, res) => {
+router.post("/signup", async (req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -47,7 +22,7 @@ router.post("/signup",validate(LoginSchema), async (req, res) => {
     }
 });
 
-router.post("/login",validate(LoginSchema) ,async (req, res) => {
+router.post("/login",async (req, res) => {
     const { username, password } = req.headers;
 
     try {
