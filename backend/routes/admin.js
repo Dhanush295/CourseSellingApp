@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { z } = require("zod");
-const { ADMIN } = require("../database/db");
+const { ADMIN, COURSES } = require("../database/db");
 const { hashPassword, comparePasswords } = require("../authenticate/auth");
 
 router.post("/signup", async (req, res) => {
@@ -43,7 +43,15 @@ router.post("/login",async (req, res) => {
 });
 
 router.post('/course', async(req,res)=>{
-    
+    const addCourses = req.body;
+    const course = await COURSES.findOne({title : addCourses.title})
+    if(course){
+        const courseData = new COURSES(addCourses);
+        courseData.save();
+        res.status(200).json({message: "Course Created Successfully! "});
+    }else{
+        res.status(400).json({message: "Course not Found! "});
+    }
 });
 
 module.exports = router;
