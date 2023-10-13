@@ -42,4 +42,8 @@ router.post("/login",async (req, res) => {
     }
 });
 
+router.post('/course', async(req,res)=>{
+    
+});
+
 module.exports = router;
