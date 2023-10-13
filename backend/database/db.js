@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const { string } = require("zod");
-
 
 const AdminSchema = new mongoose.Schema({
     username: String,
