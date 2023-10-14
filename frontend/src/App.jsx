@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {  BrowserRouter as Router,  Routes,  Route} from "react-router-dom";
+import Home from "../components/users/Home"
+import Login from "../components/users/login";
+import PurchasedCourse from "../components/users/purchasedCourse";
+import Signup from "../components/users/Signup";
 import './App.css'
+import CreateCourses from "../components/admin/CreateCourses";
+import AdminLogin from "../components/admin/AdminLogin";
+import AdminSignup from "../components/admin/AdminSignup";
+import UpdateCourse from "../components/admin/updateCourse";
+import Courses from "../components/admin/courses";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{width:"100vw",height:"99vh",backgroundColor:"grey"}}>
+      <Router>
+        <Routes>
+          <Route path ={"/"} element={<Home/>}></Route>
+          <Route path ={"/login"} element={<Login/>}></Route>
+          <Route path ={"/purchasedCourse"} element={<PurchasedCourse/>}></Route>
+          <Route path ={"/signup"} element={<Signup/>}></Route>
+          <Route path ={"/courses"} element={<Courses/>}></Route>
+          <Route path ={"/createcourses"} element={<CreateCourses/>}></Route>
+          <Route path ={"/adminlogin"} element={<AdminLogin/>}></Route>
+          <Route path ={"/adminsignup"} element={<AdminSignup/>}></Route>
+          <Route path ={"/updatecourse"} element={<UpdateCourse/>}></Route>
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
 export default App
