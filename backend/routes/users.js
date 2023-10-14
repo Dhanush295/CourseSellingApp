@@ -7,25 +7,22 @@ const { hashPassword, comparePasswords } = require("../authenticate/hash");
 const e = require("express");
 
 router.post("/signup", async (req, res) => {
-    const { username, password } = req.body;
-
+    const { username } = req.body.username;
     try {
         const admin = await USERS.findOne({ username });
         if (admin) {
             return res.status(404).json({ message: "Admin already exists" });
         }
-
         const hashedPassword = hashPassword(req);
         const newAdmin = new USERS({ username, password: hashedPassword });
         await newAdmin.save();
-        const token = jwt.sign({ username }, SECRET);
-        return res.status(200).json({ message: "Admin Created Successfully", token: token });
+        return res.status(200).json({ message: "Admin Created Successfully"});
     } catch (error) {
         return res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 });
 
-router.post("/login",authJwt, async (req, res) => {
+router.post("/login", async (req, res) => {
     const { username, password } = req.headers;
 
     try {
@@ -36,7 +33,8 @@ router.post("/login",authJwt, async (req, res) => {
 
         const isPasswordMatch = await comparePasswords(req, admin.password);
         if (isPasswordMatch) {
-            return res.status(200).json({ message: "Logged In Successfully!" });
+            const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
+            return res.status(200).json({ message: "Logged In Successfully!", token: token });
         } else {
             return res.status(401).json({ message: "Authentication Failed" });
         }
