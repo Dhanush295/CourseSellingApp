@@ -18,7 +18,7 @@ router.post("/signup", async (req, res) => {
         const hashedPassword = hashPassword(req);
         const newAdmin = new USERS({ username, password: hashedPassword });
         await newAdmin.save();
-        const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ username }, SECRET);
         return res.status(200).json({ message: "Admin Created Successfully", token: token });
     } catch (error) {
         return res.status(500).json({ message: "Internal Server Error", error: error.message });
