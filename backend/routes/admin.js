@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ADMIN, COURSES } = require("../database/db");
-const { hashPassword, comparePasswords } = require("../authenticate/auth");
+const { hashPassword, comparePasswords } = require("../authenticate/hash");
 
 router.post("/signup", async (req, res) => {
     const { username, password } = req.body;
