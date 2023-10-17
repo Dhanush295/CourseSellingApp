@@ -17,14 +17,21 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 function AdminLogin() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+  const [ username, setUsername ] = React.useState('');
+  const [ password, setPassword ] = React.useState('');
+
+  const handleSubmit = async()=>{
+    const response = await axios.post("http://localhost:3000/users/login", {}, 
+    {
+    headers: {
+        'username': username,
+        'password': password,
+        'Content-Type':'application/json'
+    }})
+    const token = response.data.token;
+    
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -44,7 +51,7 @@ function AdminLogin() {
           <Typography component="h1" variant="h5">
             ADMIN LOGIN
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -54,6 +61,7 @@ function AdminLogin() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=>setUsername(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -64,12 +72,14 @@ function AdminLogin() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Admin Login
             </Button>

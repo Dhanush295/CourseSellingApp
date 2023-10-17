@@ -16,14 +16,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 function AdminSignup() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const [username, setUsername ] = React.useState('');
+    const [password, setPassword ] = React.useState('');
+
+    const handleSubmit = async()=>{
+        const response = await axios.post("http://localhost:3000/users/signup", {username, password},
+        {
+        headers: {
+            'Content-Type':'application/json'
+        }})
+        console.log(response.data);
+    }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -43,7 +46,7 @@ function AdminSignup() {
           <Typography component="h1" variant="h5">
             Admin Sign Up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -53,6 +56,7 @@ function AdminSignup() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=>setUsername(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -63,12 +67,14 @@ function AdminSignup() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e)=> setPassword(e.target.value)}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
             >
               Admin Sign Up
             </Button>
