@@ -1,0 +1,71 @@
+.container-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: auto;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    margin: 10px;
+}
+
+.logo-class .logo{
+    margin: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+    color: rgb(52, 52, 202);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+#SearchCourse{
+    float: left;
+    padding: 6px;
+    margin-top: 8px;
+    margin-left: 16px;
+    background: rgb(231, 228, 228);
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.Search-Course{
+    border: none;
+    background-color:rgb(52, 52, 202) ;
+    color: azure;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.Search-Course:hover{
+    opacity: 0.8;
+}
+.Search-Course:active{
+    opacity: 0;
+}
+
+.cred-button button{
+    border: none;
+    background-color:rgb(52, 52, 202) ;
+    color: azure;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.cred-button button:hover{
+    opacity: 0.8;
+}
+.cred-button button:active{
+    opacity: 0;
+}
+

@@ -1,5 +1,6 @@
 import {  BrowserRouter as Router,  Routes,  Route} from "react-router-dom";
-import Home from "../components/users/Home"
+import AppBar from "../components/Appbar";
+import Home from "../components/users/home";
 import Login from "../components/users/login";
 import PurchasedCourse from "../components/users/purchasedCourse";
 import Signup from "../components/users/Signup";
@@ -15,8 +16,9 @@ function App() {
   
 
   return (
-    <div style={{width:"100vw",height:"99vh",backgroundColor:"grey"}}>
+    
       <Router>
+        <AppBar />
         <Routes>
           <Route path ={"/"} element={<Home/>}></Route>
           <Route path ={"/login"} element={<Login/>}></Route>
@@ -29,7 +31,8 @@ function App() {
           <Route path ={"/updatecourse"} element={<UpdateCourse/>}></Route>
         </Routes>
       </Router>
-    </div>
+    
+
   );
 }
 
