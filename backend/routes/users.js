@@ -6,6 +6,10 @@ const { USERS, COURSES } = require("../database/db");
 const { hashPassword, comparePasswords } = require("../authenticate/hash");
 const e = require("express");
 
+router.get('/me',authJwt, async(req,res)=>{
+    res.json({username: req.user.username});
+} );
+
 router.post("/signup", async (req, res) => {
     const { username } = req.body;
     try {

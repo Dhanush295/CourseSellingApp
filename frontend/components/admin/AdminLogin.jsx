@@ -30,6 +30,7 @@ function AdminLogin() {
         'Content-Type':'application/json'
     }})
     const token = response.data.token;
+    localStorage.setItem("key", token);
     
   }
 

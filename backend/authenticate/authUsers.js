@@ -2,22 +2,20 @@ const jwt = require("jsonwebtoken");
 
 const SECRET = "CourseSEllingAppJWTtoken";
 
-const authJwt = async (req, res,next)=>{
-    const token = req.headers.authorization.split(' ')[1];
-    if(token){
-        const decodedToken = jwt.verify(token,SECRET);
-        if (decodedToken) {
-            req.user = decodedToken;
-            next();
-          }
-          
-        else{
-            return res.status(400).json({message: "Authentication failed"})
+const authJwt = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (authHeader) {
+      const token = authHeader;
+      jwt.verify(token, SECRET, (err, user) => {
+        if (err) {
+          return res.sendStatus(403);
         }
+        req.user = user;
+        next();
+      });
+    } else {
+      res.sendStatus(401);
     }
-    else{
-        return res.status(401).json({success:false, message: "Error!Token was not provided."});
-    }   
-}
+  };
 
 module.exports = { authJwt, SECRET};
