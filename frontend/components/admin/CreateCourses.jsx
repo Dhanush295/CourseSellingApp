@@ -30,17 +30,17 @@ function CreateCourses() {
                 
               </Avatar>
               <Typography component="h1" variant="h5">
-                Login
+                Create Courses
               </Typography>
               <Box sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="Title"
+                  label="Title"
+                  name="Title"
+                  autoComplete="Title"
                   autoFocus
                   
                 />
@@ -53,7 +53,26 @@ function CreateCourses() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  
+                />
+                <TextField
+                  margin="link"
+                  required
+                  fullWidth
+                  name="link"
+                  label="Link"
+                  type="link"
+                  id="link"
+                  autoComplete="current-link"
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="price"
+                  label="Price"
+                  type="price"
+                  id="price"
+                  autoComplete="current-price"
                 />
                 <Button
                   type="submit"
