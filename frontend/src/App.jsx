@@ -9,7 +9,7 @@ import CreateCourses from "../components/admin/CreateCourses";
 import AdminLogin from "../components/admin/AdminLogin";
 import AdminSignup from "../components/admin/AdminSignup";
 import UpdateCourse from "../components/admin/updateCourse";
-import Courses from "../components/admin/courses";
+import Courses from "../components/admin/Courses";
 import * as React from 'react';
 
 function App() {
