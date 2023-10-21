@@ -23,6 +23,7 @@ function App() {
           <Route path ={"/purchasedCourse"} element={<PurchasedCourse/>}></Route>
           <Route path ={"/signup"} element={<Signup/>}></Route>
           <Route path ={"/courses"} element={<Courses/>}></Route>
+          
           <Route path ={"/createcourses"} element={<CreateCourses/>}></Route>
           <Route path ={"/adminlogin"} element={<AdminLogin/>}></Route>
           <Route path ={"/adminsignup"} element={<AdminSignup/>}></Route>

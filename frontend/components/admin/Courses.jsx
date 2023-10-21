@@ -1,4 +1,7 @@
+import * as React from 'react';
 import { useEffect, useState } from "react";
+import Card from '@mui/material/Card';
+import { Typography } from '@mui/material';
 import axios from "axios";
 
 function Courses() {
@@ -13,16 +16,34 @@ function Courses() {
                 }
             });
             if(response.data){
-                // setCourses(response.data);
-                console.log(response.data.courses);
+                setCourses(response.data.courses);
             }
         }
         fetchdata();
     }, []) ;
 
+    return <div>
+        {courses.map(course=> <DisplayCourse course = {course} />)}
+        
+    </div>
+        
+    
+}
 
-
-    return
+function DisplayCourse(props){
+    return(
+        <div>
+            <Card variant="outlined"
+            style={{margin: 10,
+                    width: 300,
+                    minHeight: 200
+                    }}>
+                <Typography style={{textAlign: "center", marginTop: 10}} variant='h4'>{props.course.title}</Typography>
+                <Typography style={{textAlign: "center", }} variant='h5'>{props.course.description}</Typography>
+            </Card>
+             </div>
+    
+    );
 }
 
 export default Courses;
