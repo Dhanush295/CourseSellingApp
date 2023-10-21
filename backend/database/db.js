@@ -16,7 +16,7 @@ const Courses = new mongoose.Schema({
     title: String,
     description: String,
     price: Number,
-    imageLink: String,
+    link: String,
     published: Boolean
 });
 

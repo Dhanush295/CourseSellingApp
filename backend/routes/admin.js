@@ -41,7 +41,7 @@ router.post("/login",async (req, res) => {
     }
 });
 
-router.post('/courses', async(req,res)=>{
+router.post('/createcourses', async(req,res)=>{
     const addCourses = req.body;
     const course = await COURSES.findOne({title : addCourses.title})
     if(!course){
