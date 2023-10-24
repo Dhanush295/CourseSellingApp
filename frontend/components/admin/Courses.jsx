@@ -22,7 +22,7 @@ function Courses() {
         fetchdata();
     }, []) ;
 
-    return <div>
+    return <div style={{display:"flex"}}>
         {courses.map(course=> <DisplayCourse course = {course} />)}
         
     </div>
@@ -32,7 +32,7 @@ function Courses() {
 
 function DisplayCourse(props){
     return(
-        <div>
+        
             <Card variant="outlined"
             style={{margin: 10,
                     width: 300,
@@ -42,7 +42,7 @@ function DisplayCourse(props){
                 <Typography style={{textAlign: "center", }} variant='h5'>{props.course.description}</Typography>
                     <img src={props.course.link} style={{width: 300}}/>
             </Card>
-             </div>
+             
     
     );
 }

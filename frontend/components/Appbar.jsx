@@ -7,7 +7,6 @@ import axios from 'axios';
 function AppBar() {
     const navigate = useNavigate();
     const [username , setUsername ] = React.useState(null);
-    const [ isLoading, setLoading ] = React.useState(true)
 
     React.useEffect(() => {
         async function fetchdata(){
@@ -24,9 +23,6 @@ function AppBar() {
         fetchdata();
     }, []);
 
-    if(isLoading){
-        return <div></div>
-    }
 
     if (username){
         return(
