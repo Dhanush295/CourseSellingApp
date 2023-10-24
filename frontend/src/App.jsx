@@ -26,7 +26,7 @@ function App() {
             <Route path ={"/createcourses"} element={<CreateCourses/>}></Route>
             <Route path ={"/adminlogin"} element={<AdminLogin/>}></Route>
             <Route path ={"/adminsignup"} element={<AdminSignup/>}></Route>
-            <Route path ={"/updatecourse"} element={<UpdateCourse/>}></Route>
+            <Route path ={"/course/:courseId"} element={<UpdateCourse/>}></Route>
           </Routes>
       </Router>
     </div>
