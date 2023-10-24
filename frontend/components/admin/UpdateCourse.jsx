@@ -45,9 +45,10 @@ function UpdateCourse() {
     }
 
     return(     
-        <div>
-            <CourseCard course = {course} />
-            <UpdateCard course = {course} />
+        <div style={{display:"flex", justifyContent:"space-between"}}>
+            <div><UpdateCard course = {course} /></div>
+            <div><CourseCard course = {course} /> </div>
+             
         </div>   
         
        
@@ -72,8 +73,9 @@ function UpdateCard(props){
         return(
             <div style={{ display:"flex",
              border: 300 ,
-             maxWidth: 500, 
-             marginLeft:500}}>
+             maxWidth: 500,
+             marginTop: 50, 
+             marginLeft:200}}>
 
                 <Card variant="outlined" style={{width: 400, padding:20}}>
                     <Typography variant='h5' textAlign={"center"}>Update Course</Typography>
@@ -143,13 +145,15 @@ function UpdateCard(props){
 function CourseCard(props){
     return (
         <Card variant="outlined"
-            style={{margin: 10,
+            style={{marginRight: 200,
+                marginTop:50,
                     width: 300,
                     minHeight: 200
                     }}>
                 <Typography style={{textAlign: "center", marginTop: 10}} variant='h4'>{props.course.title}</Typography>
                 <Typography style={{textAlign: "center", }} variant='h5'>{props.course.description}</Typography>
                 <img src={props.course.link} style={{width: 280, margin: 10}}/>
+                <Typography padding={2} textAlign={"center"} variant='h6'> Price: ${props.course.price}</Typography>
             </Card>
     );
 }

@@ -14,7 +14,7 @@ import * as React from 'react';
 
 function App() {
     return (
-    <div style={{ backgroundColor:"#f9f9f9", width: "100vw", height: "100vh"}}>
+    <div style={{ backgroundColor:"#f9f9f9", width: "100vw", height: "100vh",backgroundRepeat: "no-repeat"}}>
       <Router>
         <AppBar></AppBar>
           <Routes>

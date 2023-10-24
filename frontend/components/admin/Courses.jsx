@@ -44,8 +44,9 @@ export function DisplayCourse(props){
                 <Typography style={{textAlign: "center", }} variant='h5'>{props.course.description}</Typography>
                 <img src={props.course.link} style={{width: 280, margin: 10}}/>
                 <div style={{display: "flex", justifyContent: "space-between", margin: 10}}>
-                    <Button variant="contained" >Delete</Button>
+                    <Typography variant='h6'>${props.course.price}</Typography>
                     <Button variant="contained" onClick={() => navigate(`/course/${props.course._id}`)}>Update</Button>
+                    <Button variant="contained" >Delete</Button>                     
                 </div>
                 
             </Card>
