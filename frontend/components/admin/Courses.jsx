@@ -40,6 +40,7 @@ function DisplayCourse(props){
                     }}>
                 <Typography style={{textAlign: "center", marginTop: 10}} variant='h4'>{props.course.title}</Typography>
                 <Typography style={{textAlign: "center", }} variant='h5'>{props.course.description}</Typography>
+                    <img src={props.course.link} style={{width: 300}}/>
             </Card>
              </div>
     
