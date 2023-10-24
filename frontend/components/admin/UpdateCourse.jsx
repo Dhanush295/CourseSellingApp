@@ -1,15 +1,10 @@
 
 import * as React from 'react';
 import { useEffect, useState } from "react";
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import { Card } from '@mui/material';
-import Box from '@mui/material/Box';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -45,7 +40,7 @@ function UpdateCourse() {
     }
 
     return(     
-        <div style={{display:"flex", justifyContent:"space-between"}}>
+        <div style={{display:"flex", justifyContent:"space-between" , flexWrap:"nowrap"}}>
             <div><UpdateCard course = {course} /></div>
             <div><CourseCard course = {course} /> </div>
              
@@ -63,7 +58,7 @@ function UpdateCard(props){
     const course = props.course
 
         const handleSubmit = async()=> {
-        const response = await axios.put('http://localhost:3000/admin/courses/' + course._id, {title, description,price,link,published},{
+        const response = await axios.put('http://localhost:3000/admin/courses/' + course._id, {title, description,price,link},{
             headers: {
                 'Content-Type':'application/json'
             }})
