@@ -46,8 +46,8 @@ function AppBar() {
     }
 
     return(
-        <div style={{display: 'flex', justifyContent: 'space-between'}}> 
-            <div style={{padding: 10, color:"#4657ea", fontWeight: 'bolder'}}>
+        <div style={{display: 'flex', justifyContent: 'space-between', backgroundColor:"black"}}> 
+            <div style={{padding: 10, color:"white", fontWeight: 'bolder'}}>
                 <Typography variant="h4" component="h2">Course App</Typography>
             </div>
             <div style={{display: 'flex', padding: 10}}>
