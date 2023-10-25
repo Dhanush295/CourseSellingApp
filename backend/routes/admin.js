@@ -63,6 +63,16 @@ router.put('/courses/:courseId', async(req,res)=>{
     }
 });
 
+router.get("/courses/:courseId", async(req,res)=>{
+    const id = req.params.courseId;
+    const course = await COURSES.findById(id);
+    if(course){
+        res.json({course});
+    }else{
+        res.status(404).json({message: "Course not found"});
+    }
+});
+
 router.get('/courses', async(req,res)=>{
     const courses = await COURSES.find({});
     res.json({ courses });

@@ -19,32 +19,30 @@ function UpdateCourse() {
 
     useEffect(()=>{
         async function fetchdata(){
-            const response = await axios.get("http://localhost:3000/admin/courses", {
+            const response = await axios.get("http://localhost:3000/admin/courses/" + courseId, {
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
+            console.log(response.data.course)
             if(response.data){
-                setCourses(response.data.courses);
+                setCourses(response.data.course);
             }
         }
         fetchdata();
     }, []) ;
 
-    let course = courses.find(course => course._id === courseId);
-
-    if(!course){
+    if(!courses){
         return <div>
-            loading....
+            loading...
         </div>
     }
 
     return(     
-        <div style={{display:"flex", justifyContent:"space-between" , flexWrap:"nowrap"}}>
-            <div><UpdateCard course = {course} /></div>
-            <div><CourseCard course = {course} /> </div>
-             
-        </div>   
+        <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "nowrap" }}>
+            <UpdateCard course={courses} />
+            <CourseCard course={courses} />
+</div>   
         
        
     );
@@ -72,63 +70,63 @@ function UpdateCard(props){
              marginTop: 50, 
              marginLeft:200}}>
 
-                <Card variant="outlined" style={{width: 400, padding:20}}>
+                <Card variant="outlined" style={{width: 400, padding:20, minHeight: 200}}>
                     <Typography variant='h5' textAlign={"center"}>Update Course</Typography>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="Title"
-                  label="Title"
-                  name="Title"
-                  onChange={(e)=>{ setTitle(e.target.value)}}
-                  autoComplete="Title"
-                  autoFocus
-                  
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="description"
-                  label="description"
-                  type="description"
-                  id="description"
-                  onChange={(e)=>{ setDescription(e.target.value)}}
-                  autoComplete="current-description"
-                />
-                <TextField
-                  margin="link"
-                  required
-                  fullWidth
-                  name="link"
-                  label="Link"
-                  type="link"
-                  onChange={(e)=>{setLink(e.target.value)}}
-                  id="link"
-                  autoComplete="current-link"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="price"
-                  label="Price"
-                  type="price"
-                  id="price"
-                  onChange={(e)=>{setPrice(e.target.value)}}
-                  autoComplete="current-price"
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={handleSubmit} 
-                >
-                  Update Course
-                </Button>
-            </Card>
+                    <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="Title"
+                    label="Title"
+                    name="Title"
+                    onChange={(e)=>{ setTitle(e.target.value)}}
+                    autoComplete="Title"
+                    autoFocus
+                    
+                    />
+                    <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="description"
+                    label="description"
+                    type="description"
+                    id="description"
+                    onChange={(e)=>{ setDescription(e.target.value)}}
+                    autoComplete="current-description"
+                    />
+                    <TextField
+                    margin="link"
+                    required
+                    fullWidth
+                    name="link"
+                    label="Link"
+                    type="link"
+                    onChange={(e)=>{setLink(e.target.value)}}
+                    id="link"
+                    autoComplete="current-link"
+                    />
+                    <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="price"
+                    label="Price"
+                    type="price"
+                    id="price"
+                    onChange={(e)=>{setPrice(e.target.value)}}
+                    autoComplete="current-price"
+                    />
+                    <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    onClick={handleSubmit} 
+                    >
+                    Update Course
+                    </Button>
+                </Card>
 
             </div>
             
@@ -139,17 +137,20 @@ function UpdateCard(props){
 
 function CourseCard(props){
     return (
-        <Card variant="outlined"
-            style={{marginRight: 200,
-                marginTop:50,
-                    width: 300,
-                    minHeight: 200
-                    }}>
-                <Typography style={{textAlign: "center", marginTop: 10}} variant='h4'>{props.course.title}</Typography>
-                <Typography style={{textAlign: "center", }} variant='h5'>{props.course.description}</Typography>
-                <img src={props.course.link} style={{width: 280, margin: 10}}/>
-                <Typography padding={2} textAlign={"center"} variant='h6'> Price: ${props.course.price}</Typography>
+        <div style={{ marginRight: 200, marginTop: 50, minHeight: 200 }}>
+            <Card variant="outlined" style={{ width: 300 }}>
+                <img src={props.course.link} style={{ width: 280, margin: 10 }} />
+                <Typography style={{ textAlign: "center", marginTop: 5 }} variant="h4">
+                {props.course.title}
+                </Typography>
+                <Typography style={{ textAlign: "center" }} variant="h5">
+                {props.course.description}
+                </Typography>
+                <Typography marginBottom={2} textAlign={"center"} variant="h6">
+                Price: ${props.course.price}
+                </Typography>
             </Card>
+        </div>
     );
 }
 
