@@ -39,12 +39,14 @@ function UpdateCourse() {
         <div >
             <GreyTopper title = {courses.title}/>
             <Grid Container>
+                <div style={{display:"flex", justifyContent:"space-around"}}>
                 <Grid item lg={8} md={12} sm={12}>
                     <UpdateCard courses={courses} setCourses={setCourses} />
                 </Grid>
                 <Grid item lg={4} md={12} sm={12}>
                     <CourseCard courses={courses} />
                 </Grid>
+                </div>
             </Grid>        
     </div>         
     );
@@ -82,7 +84,7 @@ function UpdateCard({courses, setCourses}){
         
         return(
             <div style={{ display:"flex",justifyContent:"start", marginLeft:50}}>
-                <Card variant="outlined" style={{maxWidth: 600, marginTop: 300}}>
+                <Card variant="outlined" style={{maxWidth: 600, marginTop: 300, zIndex: 1}}>
                     <div style={{padding: 20}}>
                         <Typography variant='h5' textAlign={"center"}>Update Course</Typography>
                         <TextField
@@ -157,7 +159,7 @@ function UpdateCard({courses, setCourses}){
 function CourseCard({courses}){
     return (
         <div style={{ display:"flex",justifyContent:"end", marginRight: 50, marginTop:50}}>
-            <Card variant="outlined" style={{ width: 300 }}>
+            <Card variant="outlined" style={{ margin:10, width: 350, minHeight:200,marginRight:50, paddingBottom: 15, zIndex: 2 }}>
                 <img src={courses.link} style={{ width: 280, margin: 10 }} />
                 <Typography style={{ textAlign: "center", marginTop: 5 }} variant="h4">
                 {courses.title}
