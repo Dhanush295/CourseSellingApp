@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import {Navigate, useNavigate } from 'react-router-dom';
 
-function Courses() {
+function AdminCourses() {
     const [ courses, setCourses ] = useState([]);
 
     useEffect(()=>{
@@ -55,4 +55,4 @@ export function DisplayCourse(props){
     );
 }
 
-export default Courses;
+export default AdminCourses;

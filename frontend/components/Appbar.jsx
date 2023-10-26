@@ -32,7 +32,10 @@ function AppBar() {
                 </div>
                 <div style={{display: 'flex', padding: 10}}>
                     <div style={{padding: 10}}>
-                    <Button disabled>{username}</Button>
+                    <Typography color={"white"} variant='h4'>{username}</Typography>
+                    </div>
+                    <div>
+                        <Button variant="contained" onClick={()=>{navigate("/courses")}> Courses </Button>
                     </div>
                     <div style={{padding: 10}}>
                         <Button variant="contained" 
