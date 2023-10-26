@@ -17,7 +17,6 @@ function AppBar() {
             });
             if(response.data.username){
                 setUsername(response.data.username);
-                setLoading(false)
             }
         }
         fetchdata();
@@ -28,7 +27,8 @@ function AppBar() {
         return(
             <div style={{display: 'flex',backgroundColor:"black", color:"white" ,justifyContent: 'space-between'}}> 
                 <div style={{padding: 10, color:"white", fontWeight: 'bolder'}}>
-                    <Typography variant="h4" component="h2">Course App</Typography>
+                <Typography variant="h4" component="h2" onClick={() => navigate('/')}>Course App</Typography>
+
                 </div>
                 <div style={{display: 'flex', padding: 10}}>
                     <div style={{padding: 10}}>

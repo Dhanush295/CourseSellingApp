@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Card, Typography, Button } from "@mui/material";
 
 function PurchasedCourse() {
     const [purchasedCourses, setPurchasedCourses] = useState([]);
@@ -40,7 +41,7 @@ function PurchasedCourse() {
 
 
 function CourseDetails({ courseId }) {
-    const [course, setCourse] = useState(null);
+    const [course, setCourse] = useState([]);
 
     useEffect(() => {
         async function fetchCourseDetails() {
@@ -50,8 +51,9 @@ function CourseDetails({ courseId }) {
                         "authorization": localStorage.getItem("key")
                     }
                 });
+                console.log(response.data.course)
+                setCourse(response.data.course)
                 
-                setCourse(response.data.course);
             } catch (error) {
                 console.log(error);
             }
@@ -62,8 +64,17 @@ function CourseDetails({ courseId }) {
 
     return (
        <div>
-        
-        {course.title}
+        <Card variant="outlined"style={{margin: 10,
+          width: 300,
+          minHeight: 200
+          }}>
+            <Typography style={{textAlign: "center", marginTop: 10}} variant='h4'>{course.title}</Typography>
+            <Typography style={{textAlign: "center", }} variant='h5'>{course.description}</Typography>
+            <img src={course.link} style={{width: 280, margin: 10}}/>
+            <div style={{display: "flex", justifyContent: "center", margin: 10}}>
+                <Button variant="contained" >play</Button>                     
+            </div>
+         </Card>
        </div>
     );
 }
