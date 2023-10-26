@@ -52,23 +52,27 @@ router.get('/courses', authJwt, async(req, res)=>{
     res.json({ courses });
 });
 
-router.post('/courses/:courseId', authJwt , async (req, res)=>{
+router.post('/courses/:courseId', authJwt, async (req, res) => {
     const course = await COURSES.findById(req.params.courseId);
-    if(course){
-        const user = await USERS.findOne({ username: req.user.username});
-        if(user){
-            user.purchasedCourses.push(course);
-            await user.save();
-            res.status(200).json({ message: "Course purchased successfully!" });
-        }
-        else{
-            res.status(404).json({message:"User not exist!"});
-        }
+    if (!course) {
+        return res.status(404).json({ message: "Course not found!" });
     }
-    else{
-        res.status(404).json({message: "Courses not found!"});
+
+    const user = await USERS.findOne({ username: req.user.username });
+    if (!user) {
+        return res.status(404).json({ message: "User not found!" });
     }
+
+    if (user.purchasedCourses.includes(course._id)) {
+        return res.json({ message: "Course already purchased!" });
+    }
+
+    user.purchasedCourses.push(course);
+    await user.save();
+
+    res.status(200).json({ message: "Course purchased successfully!" });
 });
+
 
 router.get('/purchasedCourse',authJwt, async(req,res)=>{
     const user = await USERS.findOne({username: req.user.username});

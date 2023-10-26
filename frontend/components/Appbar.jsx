@@ -41,6 +41,11 @@ function AppBar() {
                     </div>
                     <div style={{padding: 10}}>
                         <Button variant="contained" 
+                        onClick={()=>{navigate("/purchasedCourse")}}> 
+                        My Course </Button>
+                    </div>
+                    <div style={{padding: 10}}>
+                        <Button variant="contained" 
                         onClick={()=> {localStorage.setItem("key", null); 
                         window.location = '/'}}
                          >Logout</Button>

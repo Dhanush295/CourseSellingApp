@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Typography, Button } from "@mui/material";
+import { json } from "react-router-dom";
 
 
 function UserCourse() {
@@ -65,6 +66,23 @@ function UserCourse() {
 }
 
 function DisplayCourse({ course }) {
+
+  const handleSubmit = async()=>{
+    try{
+      const response = await axios.post("http://localhost:3000/users/courses/"+ course._id, null,{
+        headers:{
+          "authorization": localStorage.getItem("key")
+        }
+      } )
+      alert(JSON.stringify(response.data))
+    }
+
+    catch(error){
+      console.log(error)
+    }
+  };
+
+
   return (<Card variant="outlined"
   style={{margin: 10,
           width: 300,
@@ -75,8 +93,7 @@ function DisplayCourse({ course }) {
       <img src={course.link} style={{width: 280, margin: 10}}/>
       <div style={{display: "flex", justifyContent: "space-between", margin: 10}}>
           <Typography variant='h6'>${course.price}</Typography>
-          <Button variant="contained" onClick={() => navigate(`/course/${course._id}`)}>Buy Course</Button>
-          <Button variant="contained" >Delete</Button>                     
+          <Button variant="contained" onClick={handleSubmit}>Buy Course</Button>                     
       </div>
       
   </Card>
