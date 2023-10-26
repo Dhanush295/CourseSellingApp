@@ -84,4 +84,13 @@ router.get('/purchasedCourse',authJwt, async(req,res)=>{
     }
 });
 
+router.get('/course/:courseId', authJwt, async(req,res)=>{
+    const courseId = req.params.courseId;
+    const course = await COURSES.findById(courseId);
+    if(!course){
+        res.json({message:"No course Found"})
+    }
+    res.json({course})
+});
+
 module.exports = router;
