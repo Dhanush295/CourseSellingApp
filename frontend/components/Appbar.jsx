@@ -52,7 +52,7 @@ function AppBar() {
             </div>
             <div style={{display: 'flex', padding: 10}}>
                 <div style={{padding: 10}}>
-                    <Button variant="contained" onClick={()=>{navigate("/signup")}}>Signup</Button>
+                    <Button variant="contained" onClick={()=>{navigate("/signup")}}>Register</Button>
                 </div>
                 <div style={{padding: 10}}>
                     <Button variant="contained" onClick={()=>{navigate("/login")}}>Login</Button>
