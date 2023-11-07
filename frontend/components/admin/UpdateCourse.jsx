@@ -19,7 +19,8 @@ function UpdateCourse() {
         async function fetchdata(){
             const response = await axios.get("http://localhost:3000/admin/courses/" + courseId, {
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "authorization": localStorage.getItem("key")
                 }
             });
             if(response.data){
@@ -77,7 +78,8 @@ function UpdateCard({courses, setCourses}){
         const handleSubmit = async()=> {
         const response = await axios.put('http://localhost:3000/admin/courses/' + courses._id, {title, description,price,link},{
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                "authorization": localStorage.getItem("key")
             }})
         setCourses(response.data)
         }

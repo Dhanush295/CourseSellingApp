@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const { authJwt, SECRET } = require("../authenticate/authUsers") 
 const { ADMIN, COURSES } = require("../database/db");
 const { hashPassword, comparePasswords } = require("../authenticate/hash");
 
@@ -27,6 +29,7 @@ router.post("/login",async (req, res) => {
     try {
         const admin = await ADMIN.findOne({ username });
         if (!admin) {
+            const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
             return res.status(404).json({ message: "Admin not found" });
         }
 
@@ -41,7 +44,7 @@ router.post("/login",async (req, res) => {
     }
 });
 
-router.post('/createcourses', async(req,res)=>{
+router.post('/createcourses', authJwt, async(req,res)=>{
     const addCourses = req.body;
     const course = await COURSES.findOne({title : addCourses.title})
     if(!course){
@@ -53,7 +56,7 @@ router.post('/createcourses', async(req,res)=>{
     }
 });
 
-router.put('/courses/:courseId', async(req,res)=>{
+router.put('/courses/:courseId', authJwt,  async(req,res)=>{
     const updateCourse = await COURSES.findByIdAndUpdate(req.params.courseId, req.body, { new: true });
     if(updateCourse){
         res.status(200).json({message: "Course updated successfully!"});
@@ -63,7 +66,7 @@ router.put('/courses/:courseId', async(req,res)=>{
     }
 });
 
-router.get("/courses/:courseId", async(req,res)=>{
+router.get("/courses/:courseId",authJwt,  async(req,res)=>{
     const id = req.params.courseId;
     const course = await COURSES.findById(id);
     if(course){
@@ -73,12 +76,12 @@ router.get("/courses/:courseId", async(req,res)=>{
     }
 });
 
-router.get('/courses', async(req,res)=>{
+router.get('/courses', authJwt, async(req,res)=>{
     const courses = await COURSES.find({});
     res.json({ courses });
 });
 
-router.delete('/courses/:courseId',  async (req,res)=>{
+router.delete('/courses/:courseId',authJwt,  async (req,res)=>{
     const courseId = req.params.courseId;
     let coursedeleted = await COURSES.findByIdAndDelete(courseId);
     if (coursedeleted){

@@ -27,7 +27,8 @@ function CreateCourses() {
     const handleSubmit = async()=> {
       const response = await axios.post('http://localhost:3000/admin/createcourses', {title, description,price,link,published},{
         headers: {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            "authorization": localStorage.getItem("key")
         }})
        console.log(response.data);
     }

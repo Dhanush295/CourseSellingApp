@@ -13,7 +13,8 @@ function AdminCourses() {
         async function fetchdata(){
             const response = await axios.get("http://localhost:3000/admin/courses", {
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "authorization": localStorage.getItem("key")
                 }
             });
             if(response.data){
@@ -39,6 +40,7 @@ export function DisplayCourse(props){
             await axios.delete(`http://localhost:3000/admin/courses/${courseId}`, {
               headers: {
                 'Content-Type': 'application/json',
+                "authorization": localStorage.getItem("key")
               },
         });
     } catch (error) {
