@@ -33,6 +33,19 @@ function AdminCourses() {
 
 export function DisplayCourse(props){
     const navigate = useNavigate();
+    const handledelete = async(courseId) =>{
+        try {
+            
+            await axios.delete(`http://localhost:3000/admin/courses/${courseId}`, {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+        });
+    } catch (error) {
+        console.error('Error deleting course:', error);
+      }
+    };
+    
     return(
         
             <Card variant="outlined"
@@ -46,7 +59,7 @@ export function DisplayCourse(props){
                 <div style={{display: "flex", justifyContent: "space-between", margin: 10}}>
                     <Typography variant='h6'>${props.course.price}</Typography>
                     <Button variant="contained" onClick={() => navigate(`/course/${props.course._id}`)}>Update</Button>
-                    <Button variant="contained" >Delete</Button>                     
+                    <Button variant="contained" onClick = {()=>{handledelete(props.course._id)}} >Delete</Button>                     
                 </div>
                 
             </Card>

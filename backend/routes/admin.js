@@ -78,4 +78,15 @@ router.get('/courses', async(req,res)=>{
     res.json({ courses });
 });
 
+router.delete('/courses/:courseId',  async (req,res)=>{
+    const courseId = req.params.courseId;
+    let coursedeleted = await COURSES.findByIdAndDelete(courseId);
+    if (coursedeleted){
+        res.json({message:"Course deleted successfully!"})
+    }
+    else{
+        res.json({message: " Course not found! "})
+    }
+});
+
 module.exports = router;
