@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { Navigate, useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
 function AppBar() {
     const navigate = useNavigate();

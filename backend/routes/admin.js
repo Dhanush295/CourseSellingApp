@@ -29,13 +29,13 @@ router.post("/login",async (req, res) => {
     try {
         const admin = await ADMIN.findOne({ username });
         if (!admin) {
-            const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
             return res.status(404).json({ message: "Admin not found" });
         }
 
         const isPasswordMatch = await comparePasswords(req, admin.password);
         if (isPasswordMatch) {
-            return res.status(200).json({ message: "Logged In Successfully!" });
+            const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
+            return res.status(200).json({ message: "Logged In Successfully!", token: token });
         } else {
             return res.status(401).json({ message: "Authentication Failed" });
         }

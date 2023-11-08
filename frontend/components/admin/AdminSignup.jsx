@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
 
 const defaultTheme = createTheme();
@@ -20,7 +21,7 @@ function AdminSignup() {
     const [password, setPassword ] = React.useState('');
 
     const handleSubmit = async()=>{
-        const response = await axios.post("http://localhost:3000/users/signup", {username, password},
+        const response = await axios.post("http://localhost:3000/admin/signup", {username, password},
         {
         headers: {
             'Content-Type':'application/json'
