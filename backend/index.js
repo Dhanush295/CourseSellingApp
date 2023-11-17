@@ -12,7 +12,7 @@ app.use('/users', userroutes);
 
 
 mongoose
-    .connect('mongodb+srv://dhanu0529:I1l1Ux1JdPh29c7s@cluster0.h5b5s2t.mongodb.net/?retryWrites=true&w=majority', {
+    .connect('mongodb url', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: 'course'
